@@ -65,6 +65,7 @@ function fnResetCubo(){
     $('.command-container-cubo').addClass('hide');
     $('.form-container-cubo').removeClass('hide');
     $('#comandos-cont').html('');
+    $('.input-form').val('');
 }
 
 function peticionApi(metodo,url,parametros) {

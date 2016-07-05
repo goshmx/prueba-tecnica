@@ -41,15 +41,15 @@
             <p class="lead">Configuración del cubo</p>
             <div class="form-group">
                 <label for="exampleInputEmail1">Dimension Cubo(n):</label>
-                <input type="number" required class="form-control" id="inputN" name="n" placeholder="Dimensiones">
+                <input type="number" required class="form-control input-form" id="inputN" name="n" placeholder="Dimensiones">
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">Numero operaciones(m):</label>
-                <input type="number" required class="form-control" id="inputM" name="m" placeholder="Operaciones">
+                <input type="number" required class="form-control input-form" id="inputM" name="m" placeholder="Operaciones">
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">Test cases(t):</label>
-                <input type="number" required class="form-control" id="inputT" name="t" placeholder="Test cases">
+                <input type="number" required class="form-control input-form" id="inputT" name="t" placeholder="Test cases">
             </div>
 
         <p align="right"><button class="btn btn-lg btn-success" id="btn-config-cubo">Configurar</button></p>
