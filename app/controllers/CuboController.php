@@ -10,6 +10,7 @@ class CuboController extends Controller {
     }
 
     public function inicia(){
+        $this->data->reset();
         $reglas = array(
             'n' => 'required|integer|min:1|max:100',
             'm' => 'required|integer|min:1|max:1000',
