@@ -2,7 +2,6 @@
 
 class CuboController extends Controller {
 
-    private $cubo;
     private $data;
 
     function __construct()
@@ -26,7 +25,7 @@ class CuboController extends Controller {
             $cubo = $matrix = new \App\classes\Cubo($campos['n'],$campos['m']);
 
             $this->data->setCubo($cubo);
-            $this->data->setOperacion(0);
+            $this->data->setOperacion(1);
             $respuesta = array('status' => true, 'msg' => 'Se han cargado correctamente los datos del cubo.');
         }
         return Response::json($respuesta);
@@ -73,8 +72,43 @@ class CuboController extends Controller {
     }
 
     public function query(){
-        //Consulta QUERY
-        return Response::json(array('status' => true, 'msg' => 'CA'));
+        $reglas = array(
+            'x1' => 'required|integer|min:1',
+            'y1' => 'required|integer|min:1',
+            'z1' => 'required|integer|min:1',
+            'x2' => 'required|integer|min:1',
+            'y2' => 'required|integer|min:1',
+            'z2' => 'required|integer|min:1'
+        );
+        $validacion = Validator::make(Input::all(), $reglas);
+        if ($validacion->fails()){
+            $respuesta = array('status' => false, 'msg' => $this->mensajesError($validacion));
+        }
+        else {
+            $cubo = $this->data->getCubo();
+            if(!$cubo){
+                $respuesta = array('status' => false, 'msg' => 'Error al cargar el cubo!');
+            }else{
+                $campos = Input::only('x1', 'y1', 'z1', 'x2', 'y2', 'z2');
+                $cubo = $this->data->getCubo();
+                $valorM = $cubo->getM();
+                $numOperacion = $this->data->getOperacion();
+                if(($campos['x2']-1 < $campos['x1']-1) || ($campos['y2']-1 < $campos['y1']-1) || ($campos['z2']-1 < $campos['z1']-1)){
+                    $respuesta = array('status' => false, 'msg' => 'Error en las dimensiones del cubo');
+                }
+                else{
+                    if($valorM >= $numOperacion){
+                        $this->data->setOperacion($numOperacion+1);
+                        $total = $cubo->query($campos['x1'],$campos['y1'],$campos['z1'],$campos['x2'],$campos['y2'],$campos['z2']);
+                        $respuesta = array('status' => true, 'msg' => 'Operación ejecutada', 'data'=> $total);
+                    }
+                    else{
+                        $respuesta = array('status' => false, 'msg' => 'Excedido el numero de operaciones permitidas');
+                    }
+                }
+            }
+        }
+        return Response::json($respuesta);
     }
 
     private function mensajesError($validacion){
