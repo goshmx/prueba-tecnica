@@ -1,17 +1,12 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the Closure to execute when that URI is requested.
-|
-*/
+/*Pantalla principal de la aplicación*/
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+Route::get('/', 'PresentacionController@inicio');
+
+/*Implementación de servicios de API para consulta de la matriz*/
+
+Route::post('/inicia','CuboController@inicia');
+Route::post('/update','CuboController@update');
+Route::post('/query','CuboController@query');
+
