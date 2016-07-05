@@ -23,13 +23,15 @@
 
 <body>
 
-<div class="container" style=" max-width: 730px;">
+<div class="container" style="max-width: 730px; margin-top: 10px;">
     <div class="header clearfix">
         <nav>
             <ul class="nav nav-pills pull-right">
                 <li role="presentation"><a href="#">Ejercicio</a></li>
                 <li role="presentation"><a href="#">@goshmx</a></li>
+
             </ul>
+            <a class="btn btn-danger" href="#">Reset</a>
         </nav>
         <h3 class="text-muted">Cube Summation</h3>
     </div>
@@ -37,10 +39,6 @@
     <div class="jumbotron">
         <form>
             <p class="lead">Configuración del cubo</p>
-            <div class="form-group">
-                <label for="exampleInputEmail1">Test cases:</label>
-                <input type="text" class="form-control" id="inputT" name="t" placeholder="Test cases">
-            </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">Dimension Cubo(n):</label>
                 <input type="text" class="form-control" id="inputN" name="n" placeholder="Dimensiones">
@@ -50,7 +48,7 @@
                 <input type="text" class="form-control" id="inputM" name="m" placeholder="Operaciones">
             </div>
         </form>
-        <p align="right"><a class="btn btn-lg btn-success" href="#" role="button">Configurar</a> <a class="btn btn-lg btn-danger" href="#" role="button">Reiniciar</a></p>
+        <p align="right"><a class="btn btn-lg btn-success" href="#" role="button">Configurar</a></p>
     </div>
 
     <div class="row">
